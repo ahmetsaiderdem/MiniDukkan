@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<MiniDukkanContext>(opts => opts.UseSqlServer(builder.Configuration["ConnectionStrings:MiniDukkanConnection"]));
+builder.Services.AddScoped<IDukkanRepository,EFDukkanRepository>();
 
 var app = builder.Build();
 
