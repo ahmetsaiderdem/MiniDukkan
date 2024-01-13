@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniDukkan.Models;
+using MiniDukkan.Models.ViewModels;
 using System.Diagnostics;
 
 namespace MiniDukkan.Controllers
@@ -14,14 +15,14 @@ namespace MiniDukkan.Controllers
         {
             _repository = repo;
         }
-       
+
 
         //public IActionResult Index()
         //{
         //    return View(_repository.Productss);
         //}
-        public ViewResult Index(int urunSayfa = 1)=>
-        View(_repository.Productss.OrderBy(u=>u.UrunID).Skip((urunSayfa-1)*SayfaBoyutu).Take(SayfaBoyutu));
+        public ViewResult Index(int urunSayfa = 1) =>
+        View(new UrunlerListesiViewModel { Urunler = _repository.Productss.OrderBy(u => u.UrunID).Skip((urunSayfa - 1) * SayfaBoyutu).Take(SayfaBoyutu), SayfalamaBilgi = new SayfalamaBilgi { GuncelSayfa = urunSayfa, SayfaBasiGosterilecekUrun = SayfaBoyutu, ToplamUrunSayisi =_repository.Productss.Count() }});
         
 
         public IActionResult Privacy()

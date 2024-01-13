@@ -8,7 +8,7 @@ using MiniDukkan.Models.ViewModels;
 
 namespace MiniDukkan.Altyapi
 {
-    [HtmlTargetElement("div", Attributes = "page-model")]
+    [HtmlTargetElement("div", Attributes = "sayfa-model")]
     public class SayfaLinkTagHelper: TagHelper
     {
         private IUrlHelperFactory _urlHelperFactory;

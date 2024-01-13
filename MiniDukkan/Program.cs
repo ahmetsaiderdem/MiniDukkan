@@ -28,10 +28,11 @@ app.UseStatusCodePages();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute("sayfalama", "Urunler/Sayfa{urunSayfa}",
+    new { controller = "Home", action = "Index" });
+app.MapDefaultControllerRoute();
 
+    
 HamVeri.VeriDoldur(app);
 
 app.Run();

@@ -1,6 +1,6 @@
-﻿@model IQueryable<Product>
-
-@foreach (var u in Model)
+﻿@* @model IQueryable<Product> *@
+@model UrunlerListesiViewModel
+@foreach (var u in Model.Urunler)
 {
     <div>
         <h3>@u.UrunAd</h3>
@@ -8,4 +8,5 @@
         <h4>@u.Fiyat.ToString("c")</h4>
     </div>
 }
+<div sayfa-model="@Model.SayfalamaBilgi" sayfa-action="Index"></div>
 
