@@ -1,2 +1,11 @@
-﻿<h4>Mini Dükkanımıza hoşgeldiniz</h4>
+﻿@model IQueryable<Product>
+
+@foreach (var u in Model)
+{
+    <div>
+        <h3>@u.UrunAd</h3>
+        @u.Aciklama
+        <h4>@u.Fiyat.ToString("c")</h4>
+    </div>
+}
 

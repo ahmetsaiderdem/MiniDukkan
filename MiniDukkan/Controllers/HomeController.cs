@@ -6,17 +6,23 @@ namespace MiniDukkan.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
-        {
-            _logger = logger;
-        }
+        private IDukkanRepository _repository;
+        public int SayfaBoyutu = 3;
 
-        public IActionResult Index()
+        public HomeController(IDukkanRepository repo)
         {
-            return View();
+            _repository = repo;
         }
+       
+
+        //public IActionResult Index()
+        //{
+        //    return View(_repository.Productss);
+        //}
+        public ViewResult Index(int urunSayfa = 1)=>
+        View(_repository.Productss.OrderBy(u=>u.UrunID).Skip((urunSayfa-1)*SayfaBoyutu).Take(SayfaBoyutu));
+        
 
         public IActionResult Privacy()
         {

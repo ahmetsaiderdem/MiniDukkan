@@ -76,12 +76,14 @@ namespace MiniDukkan.Models
                        UrunAd = "Akülü Jip",
                        Aciklama = "Akülü volvo jip",
                        Kategori = "Genel Oyuncakları",
-                       Fiyat = 20000
+                       Fiyat = 2000
                    }
 
-                    );
+                  );
                 context.SaveChanges();
+
             }
+            
         }
     }
 }
