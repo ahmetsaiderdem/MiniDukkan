@@ -17,23 +17,11 @@ namespace MiniDukkan.Controllers
         }
 
 
-        //public IActionResult Index()
-        //{
-        //    return View(_repository.Productss);
-        //}
-        public ViewResult Index(int urunSayfa = 1) =>
-        View(new UrunlerListesiViewModel { Urunler = _repository.Productss.OrderBy(u => u.UrunID).Skip((urunSayfa - 1) * SayfaBoyutu).Take(SayfaBoyutu), SayfalamaBilgi = new SayfalamaBilgi { GuncelSayfa = urunSayfa, SayfaBasiGosterilecekUrun = SayfaBoyutu, ToplamUrunSayisi =_repository.Productss.Count() }});
-        
+      
+        public ViewResult Index(string kategori,int urunSayfa = 1) =>
+        View(new UrunlerListesiViewModel { Urunler = _repository.Productss.Where(u=>kategori==null || u.Kategori==kategori).OrderBy(u => u.UrunID).Skip((urunSayfa -1 ) * SayfaBoyutu).Take(SayfaBoyutu), SayfalamaBilgi = new SayfalamaBilgi { GuncelSayfa = urunSayfa, SayfaBasiGosterilecekUrun = SayfaBoyutu, ToplamUrunSayisi =_repository.Productss.Count() }});
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
+
     }
 }

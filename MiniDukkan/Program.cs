@@ -28,8 +28,16 @@ app.UseStatusCodePages();
 
 app.UseAuthorization();
 
+app.MapControllerRoute("katsayfa", "{kategori}/Sayfa{urunSayfa:int}", 
+    new  { Controller = "Home", action = "Index" });
+app.MapControllerRoute("sayfa", "Sayfa{urunSayfa:int}", 
+    new { Controller = "Home", action = "Index" ,urunSayfa=1});
+
+app.MapControllerRoute("kategori", "{kategori}",
+    new { Controller = "Home", action = "Index", urunSayfa = 1 });
+
 app.MapControllerRoute("sayfalama", "Urunler/Sayfa{urunSayfa}",
-    new { controller = "Home", action = "Index" });
+    new { controller = "Home", action = "Index", urunSayfa = 1 });
 app.MapDefaultControllerRoute();
 
     
