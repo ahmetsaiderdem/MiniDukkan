@@ -2,11 +2,9 @@
 @model UrunlerListesiViewModel
 @foreach (var u in Model.Urunler)
 {
-    <div>
-        <h3>@u.UrunAd</h3>
-        @u.Aciklama
-        <h4>@u.Fiyat.ToString("c")</h4>
-    </div>
+    <partial name="UrunOzet" model="u" />
+   
 }
-<div sayfa-model="@Model.SayfalamaBilgi" sayfa-action="Index"></div>
+<div sayfa-model="@Model.SayfalamaBilgi" sayfa-action="Index" page-classes-enabled="true" 
+page-class="btn" page-class-normal="btn-outline-dark" page-class-selected="btn-primary" class="btn-group pull-right m-1"></div>
 

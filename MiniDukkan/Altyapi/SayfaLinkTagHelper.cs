@@ -24,6 +24,16 @@ namespace MiniDukkan.Altyapi
         public SayfalamaBilgi SayfaModel { get; set; }
 
         public string SayfaAction { get; set; }
+
+        public bool PageClassEnabled { get; set; } = false;
+
+        public string PageClass { get; set; }
+
+        public string PageClassNormal { get; set; }
+
+        public string PageClassSelected { get; set; }
+
+
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
             IUrlHelper urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext);
@@ -32,6 +42,11 @@ namespace MiniDukkan.Altyapi
             {
                 TagBuilder tag = new TagBuilder("a");
                 tag.Attributes["href"]=urlHelper.Action(SayfaAction,new {urunSayfa =i});
+                if (PageClassEnabled) 
+                {
+                    tag.AddCssClass(PageClass);
+                    tag.AddCssClass(i == SayfaModel.GuncelSayfa?PageClassSelected:PageClassNormal);
+                }
                 tag.InnerHtml.Append(i.ToString());
                 sonuc.InnerHtml.AppendHtml(tag);
 
