@@ -11,11 +11,11 @@ namespace MiniDukkan.Altyapi
     [HtmlTargetElement("div", Attributes = "sayfa-model")]
     public class SayfaLinkTagHelper: TagHelper
     {
-        private IUrlHelperFactory _urlHelperFactory;
+        private IUrlHelperFactory urlHelperFactory;
 
-        public SayfaLinkTagHelper(IUrlHelperFactory urlHelperFactory)
+        public SayfaLinkTagHelper(IUrlHelperFactory HelperFactory)
         {
-            _urlHelperFactory = urlHelperFactory;
+            urlHelperFactory = HelperFactory;
         }
         [ViewContext]
         [HtmlAttributeNotBound]
@@ -40,7 +40,7 @@ namespace MiniDukkan.Altyapi
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            IUrlHelper urlHelper = _urlHelperFactory.GetUrlHelper(ViewContext);
+            IUrlHelper urlHelper = urlHelperFactory.GetUrlHelper(ViewContext);
             TagBuilder sonuc = new TagBuilder("div");
             for (int i = 0; i < SayfaModel.ToplamSayfalar; i++)
             {

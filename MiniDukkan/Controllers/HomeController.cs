@@ -17,9 +17,20 @@ namespace MiniDukkan.Controllers
         }
 
 
-      
-        public ViewResult Index(string kategori,int urunSayfa = 1) =>
-        View(new UrunlerListesiViewModel { Urunler = _repository.Productss.Where(u=>kategori==null || u.Kategori==kategori).OrderBy(u => u.UrunID).Skip((urunSayfa -1 ) * SayfaBoyutu).Take(SayfaBoyutu), SayfalamaBilgi = new SayfalamaBilgi { GuncelSayfa = urunSayfa, SayfaBasiGosterilecekUrun = SayfaBoyutu, ToplamUrunSayisi =_repository.Productss.Count() }});
+
+        public ViewResult Index(string kategori, int urunSayfa = 1)
+        => View(new UrunlerListesiViewModel
+        {
+            Urunler = _repository.Productss.Where(u => kategori == null || u.Kategori == kategori).OrderBy(u => u.UrunID).Skip((urunSayfa - 1) * SayfaBoyutu).Take(SayfaBoyutu),
+            SayfalamaBilgi = new SayfalamaBilgi
+            {
+                GuncelSayfa = urunSayfa,
+                SayfaBasiGosterilecekUrun = SayfaBoyutu,
+                ToplamUrunSayisi = kategori == null ? _repository.Productss.Count() : _repository.Productss.Where(e => e.Kategori == kategori).Count()
+            },
+            GuncelKategori=kategori
+        }
+        );
 
 
 

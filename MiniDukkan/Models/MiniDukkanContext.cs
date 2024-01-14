@@ -18,7 +18,7 @@ namespace MiniDukkan.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Product>().HasKey(p => p.UrunID); // Id, 'Product' türünün birincil anahtarıdır.
+            modelBuilder.Entity<Product>().HasKey(u => u.UrunID); // Id, 'Product' türünün birincil anahtarıdır.
                                                               
         }
 
